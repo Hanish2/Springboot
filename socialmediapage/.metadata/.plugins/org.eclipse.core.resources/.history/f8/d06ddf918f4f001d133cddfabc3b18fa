@@ -1,0 +1,5 @@
+package com.socialmediapage.digipage.user;
+
+public interface UserRepository {
+
+}

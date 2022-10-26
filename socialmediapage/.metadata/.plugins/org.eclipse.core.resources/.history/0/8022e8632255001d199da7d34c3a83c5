@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<thead>
+<tr>
+<th >Doctor Id</th>
+<th>Name</th>
+<th>UserName</th>
+
+
+
+<th>Password</th>
+<th>Location</th>
+<th>Gender</th>
+<th>EmailId</th>
+<th>Timing</th>
+<th>Fees</th>
+<th>MobileNumber</th>
+<th>Info</th>
+<th>Experience</th>
+<th>Action</th>
+
+
+
+</tr>
+</thead>
+<tbody>
+
+
+
+
+
+<c:forEach items="${result}" var="x">  
+  <tr>
+    <td>${x.post_id}</td>
+    <td>${x.user_id}</td>  
+   <td>${x.image_url}</td>
+   <td>${x.description}</td>
+    <td>${x.likes}</td>
+    <td>${x.timestamp}</td>  
+</c:forEach>
+</tbody>
+</table>
+
+
+
+</body>
+</html>

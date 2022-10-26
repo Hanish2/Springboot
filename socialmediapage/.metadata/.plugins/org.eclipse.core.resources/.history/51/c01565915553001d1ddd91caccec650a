@@ -1,0 +1,8 @@
+package com.socialmediapage.digipage.user;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface userrepo<T,S> {
+
+	public User findByemail(String email);
+}

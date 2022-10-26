@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.socialmediapage.digipage.user.UserController,java.util.List" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+table data
+<table>
+<tr>
+<c:forEach items="${result}" var="x">  
+  <tr>
+    <td>${x.post_id}</td>
+    <td>${x.user_id}</td> 
+   <td><img src="${x.image_url}" alt="image"></td>
+    <td>${x.description}</td>
+    <td>${x.likes}</td>
+    
+    <td>${x.timestamp}</td>
+ </tr>
+    
+     
+    
+</c:forEach>
+
+
+</table>
+</body>
+</html>

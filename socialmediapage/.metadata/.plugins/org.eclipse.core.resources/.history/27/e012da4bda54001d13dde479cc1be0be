@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>    
+<%@ page import="com.socialmediapage.digipage.posts.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.socialmediapage.digipage.user.*" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr>
+<%
+postservice service= new postservice();
+List<post> postlist= service.getallposts();
+
+for (post post : postlist) {
+%>
+<td><%=post.getUser_id() %></td>
+<td><%=post.getDescription()%></td>
+<td><%=post.getImage_url() %></td>
+<td><%=post.getLikes() %>
+<td><%=post.getTimestamp() %></td>
+
+
+</tr>
+<%
+}
+//}
+%>
+</table>
+
+</body>
+</html>

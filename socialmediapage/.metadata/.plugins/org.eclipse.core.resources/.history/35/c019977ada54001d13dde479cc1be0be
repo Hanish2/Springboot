@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>    
+<%@ page import="com.socialmediapage.digipage.posts.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.socialmediapage.digipage.user.*" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr>
+<c:forEach items="${result}" var="x">  
+  <tr>
+    <td>${x.id}</td>
+    <td>${x.name}</td>  
+
+
+
+   <td>${x.email_id}</td>
+    <td>${x.college_name}</td>
+   
+    <td>${x.phoneno}</td>
+    <td>${x.password}</td>
+
+
+
+   <td>${x.gender}</td>
+    <td>
+    <form action="deleteuser1">
+    <input type="submit" value="Delete">
+    </form>
+    </td>
+    
+     
+    
+</c:forEach>
+
+
+</table>
+
+</body>
+</html>

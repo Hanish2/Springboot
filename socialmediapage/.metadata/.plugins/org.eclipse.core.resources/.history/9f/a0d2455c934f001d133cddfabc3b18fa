@@ -1,0 +1,35 @@
+package com.socialmediapage.digipage.user;
+
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.context.annotation.Primary;
+
+@Entity
+@Table(name="user")
+public class User {
+    @Column
+    @Id
+	int id;
+    @Column
+	String firstname;
+    @Column
+	String lastname;
+	@Column
+    String email;
+	@Column
+	int mobile;
+	@Column
+	Date dateofbirth;
+	@Column
+	String gender;
+	@Column
+	String password;
+
+	
+	
+}

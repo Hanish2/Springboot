@@ -1,0 +1,25 @@
+package com.socialmediapage.digipage.user;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+@RestController
+public class UserController {
+@RequestMapping("/")
+public ModelAndView value()
+{
+	ModelAndView mv= new ModelAndView("pages/index.jsp");
+	return mv;
+}
+@RequestMapping("/")
+public void value1(HttpServletRequest request) {
+   UserService service= new UserService();
+   service.insert(request);
+
+}
+	
+} 

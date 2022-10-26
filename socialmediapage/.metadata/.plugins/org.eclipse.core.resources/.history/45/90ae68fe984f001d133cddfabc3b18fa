@@ -1,0 +1,27 @@
+package com.socialmediapage.digipage.user;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Service
+public class UserService {
+    @RequestMapping("/hi")
+    public String insert(HttpServletRequest request)
+    {
+    	User user= new User();
+    	user.setFirstname(request.getParameter("firstname"));
+    	user.setLastname(request.getParameter("lastname"));
+    	user.setGender(request.getParameter("gender"));
+    	int mobile=Integer.parseInt(request.getParameter("mobile"));
+    	user.setMobile(mobile);
+    	String date=request.getParameter("dateofbirth");
+        System.out.println(date);
+    }
+}

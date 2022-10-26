@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>    
+<%@ page import="com.socialmediapage.digipage.posts.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.socialmediapage.digipage.user.*" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr>
+<%
+postservice service= new postservice();
+List<post> postlist= service.getallposts();
+
+%>
+
+<%
+
+for (BookList user : userList) {
+%>
+<td><%=user.getId() %></td>
+<td><%=user.getAuthors() %></td>
+<td><%=user.getOriginal_publication_year() %></td>
+<td><%=user.getTitle() %>
+<td><%=user.getLanguage_code() %></td>
+<td><%=user.getAverage_rating() %></td>
+
+</tr>
+
+</table>
+
+</body>
+</html>

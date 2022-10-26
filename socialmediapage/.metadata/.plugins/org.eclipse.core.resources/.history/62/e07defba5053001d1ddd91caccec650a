@@ -1,0 +1,12 @@
+package com.socialmediapage.digipage.user;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface friendrepository extends CrudRepository<friends, Integer>{
+	 boolean existsByFirstUserAndSecondUser(User first,User second);
+
+	    List<friends> findByFirstUser(User user);
+	    List<friends> findBySecondUser(User user);
+}

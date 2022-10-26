@@ -1,0 +1,36 @@
+package com.socialmediapage.digipage.posts;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.socialmediapage.digipage.user.UserRepository;
+
+@Service
+public class postservice {
+@Autowired
+private PostRepository postrepository;
+
+public List<post> getallposts()
+{
+	return postrepository.findall();
+}
+
+public List<post> savePost(post p_data)
+{
+	postrepository.save(p_data);
+	List<post> result= getallposts();
+	return result;
+}
+
+public List<post> deletepost(UUID post_id)
+{
+	postrepository.deleteById(post_id);
+	List<post> result= getallposts();
+	return result;
+}
+
+}

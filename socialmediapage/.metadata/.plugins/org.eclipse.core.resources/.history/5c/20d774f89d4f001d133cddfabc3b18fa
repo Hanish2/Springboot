@@ -1,0 +1,29 @@
+package com.socialmediapage.digipage.user;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Service
+public class UserService {
+@Autowired
+private UserRepository repository;
+    public void insert(HttpServletRequest request)
+    {
+    	User user= new User();
+    	user.setFirstname(request.getParameter("firstname"));
+    	user.setLastname(request.getParameter("lastname"));
+    	user.setGender(request.getParameter("gender"));
+    	String date=request.getParameter("dateofbirth");
+    	Date date1 = LocalDate.parse(date);
+        user.setDateofbirth(date1);
+        
+    }
+}
