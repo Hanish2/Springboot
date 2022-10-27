@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.socialmediapage.digipage.posts.*;
 
-@Controller
+@RestController
 @Component
 public class UserController {
-
+ User user;
 @Autowired
 private UserService userservice;
 
@@ -42,14 +42,15 @@ public ModelAndView  value1(HttpServletRequest request) throws ParseException {
 }
 ModelMap map;
 @PostMapping("/login")
-public ModelAndView login(HttpServletRequest request) {
+public ModelAndView login(HttpServletRequest request,ModelMap modelmap) {
 	
 	String redirect;	
 	
-	if(userservice.login(request))
+	if(userservice.login(request,modelmap))
 	{
-	//	map.addAttribute("email", request.getAttribute("email"));
 		redirect="homepage.jsp";
+		String email=request.getParameter("email");
+		user=userservice.getData(email);
 	}
 	else {
 		redirect="login.jsp";
@@ -59,14 +60,17 @@ public ModelAndView login(HttpServletRequest request) {
 }
 
 @PostMapping("/addpost")
-public ModelAndView addpost(HttpServletRequest request)
+public ModelAndView addpost(HttpServletRequest request,ModelMap map)
 {
     postservice.savePost(request);
 	ModelAndView mv= new ModelAndView("userprofile.jsp");
 	//System.out.println(post_list);
+	map.put("user", user);
 	System.out.println("data added");
+	
 	return mv;
 }
+
 //
 //@GetMapping("/posts")
 //public String displayUser() {
@@ -79,10 +83,22 @@ public ModelAndView addpost(HttpServletRequest request)
 
 
 @GetMapping("/posts")
-public ModelAndView Doctor(ModelMap model) {
+public ModelAndView getalldata(ModelMap model) {
   
-  ModelAndView mv= new ModelAndView(postservice.Doctor(model));
+  ModelAndView mv= new ModelAndView(postservice.getallposts(model));
   return mv;
     
 }
-} 
+
+@GetMapping("/profile")
+public ModelAndView profile(ModelMap map)
+{
+	
+	  map.put("user", user);
+	 String name= user.getFirstname();
+	 List<post> post= postservice.userpost(name);
+	 map.put("postlist",post);
+	  ModelAndView mv= new ModelAndView("userprofile.jsp");
+	  return mv;
+}
+}

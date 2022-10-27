@@ -35,17 +35,15 @@ private UserRepository repository;
     }
    
  
-    public boolean login(HttpServletRequest request)
+    public boolean login(HttpServletRequest request,ModelMap modelmap)
     {
     	User user= new User();
     	String email= request.getParameter("email");
     	String password=request.getParameter("password");
     	user= repository.findByemail(email);
-    	ModelMap modelmap = new ModelMap();
-    	modelmap.addAttribute("user",user);
     	if(user.getEmail().equals(email)&&user.getPassword().equals(password))
     	{
-    		
+    		modelmap.put("email", email);
     		return true;
     	}
     	else
@@ -55,7 +53,6 @@ private UserRepository repository;
     public  User getData(String email)
     {
        User user=repository.findByemail(email);
-       System.out.println(user.getFirstname());
     	return user;
     }
    

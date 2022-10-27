@@ -1,6 +1,10 @@
 package com.socialmediapage.digipage.posts;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,11 +21,11 @@ public class postservice {
 @Autowired
  private PostRepository postrepository;
 
-public String Doctor(ModelMap model) {
+public String getallposts(ModelMap model) {
     
-    List<post> doctor=new ArrayList<post>();
-   postrepository.findAll().forEach(i->doctor.add(i));
-   model.addAttribute("result", doctor);
+    List<post> postlist=new ArrayList<post>();
+   postrepository.findAll().forEach(i->postlist.add(i));
+   model.addAttribute("result", postlist);
   
    return "posts.jsp";
 }
@@ -33,7 +37,11 @@ public void savePost(HttpServletRequest request)
 	post_data.setDescription(request.getParameter("description"));
 	post_data.setImage_url(request.getParameter("image_url"));
 	post_data.setLikes(Integer.parseInt(request.getParameter("likes")));
-	post_data.setUser_id(Integer.parseInt(request.getParameter("user_id")));
+	post_data.setuname(request.getParameter("user_id"));
+	Date date = Calendar.getInstance().getTime();  
+	DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");   
+	post_data.setTimestamp(date);
+	System.out.println(date);
 	postrepository.save(post_data);
     //List<post> result= getallposts();
 //	return result;
@@ -45,5 +53,10 @@ public void savePost(HttpServletRequest request)
 //	List<post> result= getallposts();
 //	return result;
 //}
-
+public List<post> userpost(String uname)
+{
+	List<post> userpostlist= new ArrayList<>();
+	postrepository.findAllByuname(uname).forEach(x->userpostlist.add(x));
+	return userpostlist;
+}
 }

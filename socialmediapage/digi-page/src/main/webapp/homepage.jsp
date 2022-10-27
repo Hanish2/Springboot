@@ -12,9 +12,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href= "posts" name="posts">see all posts</a>
-<a href="userprofile.jsp" >profile</a>
-<a href="addpost.jsp"></a>
+<a href= "posts">see all posts</a>
+<a href="profile" >profile</a>
+<a href="addpost"></a>
 </body>
 </html>
 

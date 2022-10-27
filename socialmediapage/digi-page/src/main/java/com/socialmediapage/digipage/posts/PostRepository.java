@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PostRepository  extends CrudRepository<post, Integer>{
-  
+  List<post> findAllByuname(String uname);
+	
 }

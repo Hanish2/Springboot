@@ -13,8 +13,7 @@
 <c:forEach items="${result}" var="x">  
   <tr>
     <td>${x.post_id}</td>
-    <td>${x.user_id}</td>  
-    
+    <td>${x.uname}</td>   
    <td><img url("${x.image_url}")></img></td>
    <td>${x.description}</td>
     <td>${x.likes}</td>
