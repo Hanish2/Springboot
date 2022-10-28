@@ -9,10 +9,10 @@
 <body>
 
 <table>
-<form action="/addpost" method="post">
+<form action="/addpost" method="post" enctype="multipart/form-data">
  <tr>
-  <td>image_url name:</td>
-  <td> <input type="text" id="fname" name="image_url"></td>
+  <td>image:</td>
+  <td> <input type="file" name="image_url" accept="image/png, image/jpeg"></td>
  </tr>
  <tr>
  <td>add a note:</td>

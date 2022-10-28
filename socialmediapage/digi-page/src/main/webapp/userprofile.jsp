@@ -12,7 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table>
+<a href="index.jsp" style="float: right;">log out</a>
+<table style="float: right;">
 <tr>
 <td>firstname    :</td> <td>${user.firstname}</td>
 </tr>
@@ -31,24 +32,34 @@
 <tr>
 <td>gender       :</td> <td>${user.gender}</td>
 </tr>
-</tbody>
+
 </table>
 <a href="addpost.jsp">add a post</a>
-<table>
 
+<fieldset style="padding: 10px;">
 <table>
-<c:forEach items="${postlist}" var="x">  
-  <tr>
-    <td>${x.post_id}</td>
-    <td>${x.uname}</td>   
-   <td><img url("${x.image_url}")></img></td>
-   <td>${x.description}</td>
-    <td>${x.likes}</td>
-    <td>${x.timestamp}</td>  
+<c:forEach items="${postlist}" var="x">
+<tr>
+</tr>
+<tr>
+<td>name                  :</td> <td>${x.uname}</td>
+</tr>
+<tr>
+<td>image                 :</td> <td>
+<img  src= "data:image/jpeg;base64,${x.base64image}" style="width: 50px;height: 80px ;"/></img></td>
+</tr>
+<tr>
+<td>description           :</td> <td>${x.description}</td>
+</tr>
+<tr>
+<td>likes                 :</td> <td>${x.likes}</td>
+</tr>
+<tr>
+<td>time of posting       :</td> <td>${x.timestamp}</td>
+</tr> 
 </c:forEach>
 </tbody>
 </table>
-</table>
-
+</fieldset>
 </body>
 </html>

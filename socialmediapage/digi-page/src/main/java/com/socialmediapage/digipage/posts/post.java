@@ -1,5 +1,6 @@
 package com.socialmediapage.digipage.posts;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.UUID;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -20,14 +22,22 @@ public class post {
  private int post_id; 
 @Column
  private String  uname;
-@Column
- private String image_url;
+@Lob
+ private byte[] image_url;
 @Column
  private String description;
 @Column
  private int likes;
 @Column
  private Date timestamp;
+
+private String base64image;
+public String getBase64image() {
+	return base64image;
+}
+public void setBase64image(String base64image) {
+	this.base64image = base64image;
+}
 public int getPost_id() {
 	return post_id;
 }
@@ -40,12 +50,14 @@ public String getuname() {
 public void setuname(String uname) {
 	this.uname = uname;
 		}
-public String getImage_url() {
-	return image_url;
+
+public String getUname() {
+	return uname;
 }
-public void setImage_url(String image_url) {
-	this.image_url = image_url;
+public void setUname(String uname) {
+	this.uname = uname;
 }
+
 public String getDescription() {
 	return description;
 }
@@ -68,15 +80,21 @@ public post() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public post(int post_id, String uname, String image_url, String description, int likes, Date timestamp) {
+public byte[] getImage_url() {
+	 
+	return image_url;
+}
+public void setImage_url(byte[] image_url) {
+	this.image_url = image_url;
+}
+
+public post(int post_id, String uname, byte[] image_url, String description, int likes, Date timestamp) {
 	super();
 	this.post_id = post_id;
-	this.uname	 = uname;
+	this.uname = uname;
 	this.image_url = image_url;
 	this.description = description;
 	this.likes = likes;
 	this.timestamp = timestamp;
 }
-
-
 }

@@ -9,19 +9,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+<fieldset style="padding: 20px;">
 <table>
-<c:forEach items="${result}" var="x">  
-  <tr>
-    <td>${x.post_id}</td>
-    <td>${x.uname}</td>   
-   <td><img url("${x.image_url}")></img></td>
-   <td>${x.description}</td>
-    <td>${x.likes}</td>
-    <td>${x.timestamp}</td>  
+<c:forEach items="${result}" var="x">
+<tr>
+<td>name              :</td> <td>${x.uname}</td>
+</tr>
+<tr>
+<td>image             :</td> <td><img  src= "data:image/jpeg;base64,${x.base64image}" style="width: 50px;height: 80px ;"/></img></td>
+</tr>
+<tr>
+<td>description       :</td> <td>${x.description}</td>
+</tr>
+<tr>
+<td>likes             :</td> <td>${x.likes}</td>
+</tr>
+<tr>
+<td>time of posting   :</td> <td>${x.timestamp}</td>
+</tr> 
 </c:forEach>
 </tbody>
 </table>
-
+</fieldset>
 
 
 </body>

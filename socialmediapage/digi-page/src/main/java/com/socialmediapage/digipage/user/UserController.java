@@ -1,11 +1,24 @@
 package com.socialmediapage.digipage.user;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
+import javax.print.DocFlavor.INPUT_STREAM;
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,6 +38,8 @@ private UserService userservice;
 
 @Autowired 
 private postservice postservice;
+
+public static String directory="D:\\socialmediapage\\digi-page\\src\\main\\resources\\static\\images";
 
 @RequestMapping("/")
 public ModelAndView index() 
@@ -60,12 +75,15 @@ public ModelAndView login(HttpServletRequest request,ModelMap modelmap) {
 }
 
 @PostMapping("/addpost")
-public ModelAndView addpost(HttpServletRequest request,ModelMap map)
+public ModelAndView addpost(HttpServletRequest request,@RequestParam("image_url") MultipartFile file,ModelMap map) throws UnsupportedEncodingException
 {
-    postservice.savePost(request);
+    postservice.savePost(request,file,directory);
 	ModelAndView mv= new ModelAndView("userprofile.jsp");
 	//System.out.println(post_list);
 	map.put("user", user);
+	 String name= user.getFirstname();
+	 List<post> post= postservice.userpost(name);
+	 map.put("postlist",post);
 	System.out.println("data added");
 	
 	return mv;
@@ -83,7 +101,7 @@ public ModelAndView addpost(HttpServletRequest request,ModelMap map)
 
 
 @GetMapping("/posts")
-public ModelAndView getalldata(ModelMap model) {
+public ModelAndView getalldata(ModelMap model) throws UnsupportedEncodingException {
   
   ModelAndView mv= new ModelAndView(postservice.getallposts(model));
   return mv;
@@ -91,7 +109,7 @@ public ModelAndView getalldata(ModelMap model) {
 }
 
 @GetMapping("/profile")
-public ModelAndView profile(ModelMap map)
+public ModelAndView profile(ModelMap map) throws UnsupportedEncodingException
 {
 	
 	  map.put("user", user);
@@ -101,4 +119,23 @@ public ModelAndView profile(ModelMap map)
 	  ModelAndView mv= new ModelAndView("userprofile.jsp");
 	  return mv;
 }
+//@PostMapping("/addimages")
+//public ResponseEntity<String> uploadfile(@RequestParam("file") MultipartFile file)
+//{
+//    System.out.println();
+//	
+//	try {
+//		InputStream stream= file.getInputStream();
+//		FileOutputStream fos= new FileOutputStream(directory); 
+//		byte[] buffer= new byte[stream.available()];
+//	    stream.read(buffer);
+//	    fos.write(buffer);
+//	    fos.close();
+//	} catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//	
+//	return ResponseEntity.ok("working fine");
+//}
 }

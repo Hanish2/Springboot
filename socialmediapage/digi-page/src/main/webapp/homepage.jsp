@@ -13,8 +13,7 @@
 </head>
 <body>
 <a href= "posts">see all posts</a>
-<a href="profile" >profile</a>
-<a href="addpost"></a>
+<a href="profile"  style="float:right;">profile</a>
 </body>
 </html>
 

@@ -5,16 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Register</title>
-<script>
-function check_pass() {
-    if (document.getElementById('password').value ==
-            document.getElementById('conf-password').value) {
-        document.getElementById('submit').disabled = false;
-    } else {
-        document.getElementById('submit').disabled = true;
-    }
-}
-</script>
+
 </head>
 <body>
 <center>
@@ -48,7 +39,7 @@ function check_pass() {
   <input type="radio" id="checkbox" name="gender" value="female">female</td></tr>
   <tr>
   <td>password:</td>
-  <td><input type="password" id="password" name="password" onchange="check_pass();"></td></tr>
+  <td><input type="password" id="password" name="password"></td></tr>
   
   <tr>
   <td>&nbsp</td>

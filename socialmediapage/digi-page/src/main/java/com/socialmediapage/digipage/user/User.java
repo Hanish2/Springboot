@@ -22,7 +22,7 @@ public class User {
 	String firstname;
     @Column
 	String lastname;
-	@Column
+	@Column 
     String email;
 	@Column
 	String mobile;
