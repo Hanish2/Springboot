@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="post")
-public class post {
+public class Post {
 @Id
 @Column
 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,7 +76,7 @@ public Date getTimestamp() {
 public void setTimestamp(Date timestamp) {
 	this.timestamp = timestamp;
 }
-public post() {
+public Post() {
 	super();
 	// TODO Auto-generated constructor stub
 }
@@ -88,7 +88,7 @@ public void setImage_url(byte[] image_url) {
 	this.image_url = image_url;
 }
 
-public post(int post_id, String uname, byte[] image_url, String description, int likes, Date timestamp) {
+public Post(int post_id, String uname, byte[] image_url, String description, int likes, Date timestamp) {
 	super();
 	this.post_id = post_id;
 	this.uname = uname;

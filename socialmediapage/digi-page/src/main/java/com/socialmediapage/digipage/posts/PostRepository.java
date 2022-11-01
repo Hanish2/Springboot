@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PostRepository  extends CrudRepository<post, Integer>{
-  List<post> findAllByuname(String uname);
-	
+public interface PostRepository  extends CrudRepository<Post, Integer>{
+  List<Post> findAllByuname(String uname);
+  
 }

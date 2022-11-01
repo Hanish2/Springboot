@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.print.DocFlavor.INPUT_STREAM;
@@ -23,10 +25,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.socialmediapage.digipage.friends.*;
 import com.socialmediapage.digipage.posts.*;
 
 @RestController
@@ -37,7 +43,10 @@ public class UserController {
 private UserService userservice;
 
 @Autowired 
-private postservice postservice;
+private PostService postservice;
+
+@Autowired
+private FriendService friendservice;
 
 public static String directory="D:\\socialmediapage\\digi-page\\src\\main\\resources\\static\\images";
 
@@ -45,19 +54,18 @@ public static String directory="D:\\socialmediapage\\digi-page\\src\\main\\resou
 public ModelAndView index() 
 {
 	ModelAndView mv= new ModelAndView("index.jsp");
-	return mv;
+	return mv; 
 }
 @PostMapping("/register")
 public ModelAndView  value1(HttpServletRequest request) throws ParseException {
 	ModelAndView mv= new ModelAndView("login.jsp");
    userservice.insert(request);
    return mv;
-//  return "pages/index.jsp";
 
 }
 ModelMap map;
 @PostMapping("/login")
-public ModelAndView login(HttpServletRequest request,ModelMap modelmap) {
+public ModelAndView login(HttpServletRequest request,ModelMap modelmap) throws UnsupportedEncodingException {
 	
 	String redirect;	
 	
@@ -66,6 +74,9 @@ public ModelAndView login(HttpServletRequest request,ModelMap modelmap) {
 		redirect="homepage.jsp";
 		String email=request.getParameter("email");
 		user=userservice.getData(email);
+		modelmap.put("name",user.getFirstname());
+		List<Post> postlist= postservice.getallposts();
+		modelmap.put("result", postlist);
 	}
 	else {
 		redirect="login.jsp";
@@ -74,6 +85,31 @@ public ModelAndView login(HttpServletRequest request,ModelMap modelmap) {
 	return mv;
 }
 
+
+@RequestMapping(value="/profile", method=RequestMethod.GET)
+public ModelAndView profile(ModelMap map,@RequestParam String name) throws UnsupportedEncodingException
+{
+	
+	 List<Post> post= postservice.userpost(name);
+	 map.put("postlist",post);
+	 User user= userservice.getdatabyname(name);
+	List<Friend> listdata=new ArrayList<>();
+	listdata= friendservice.getlist(user.getId());
+	List<User> friendlist=new ArrayList<>();
+	
+	for(Friend x:listdata)
+	{
+		 User user1= userservice.getbyid(x.getReciever());
+		 friendlist.add(user1);
+	}
+	 map.put("user", user);
+	 map.put("friendlist", friendlist);
+	  ModelAndView mv= new ModelAndView("userprofile.jsp");
+	  
+	  return mv;
+}
+
+// to add posts
 @PostMapping("/addpost")
 public ModelAndView addpost(HttpServletRequest request,@RequestParam("image_url") MultipartFile file,ModelMap map) throws UnsupportedEncodingException
 {
@@ -82,60 +118,97 @@ public ModelAndView addpost(HttpServletRequest request,@RequestParam("image_url"
 	//System.out.println(post_list);
 	map.put("user", user);
 	 String name= user.getFirstname();
-	 List<post> post= postservice.userpost(name);
+	 List<Post> post= postservice.userpost(name);
 	 map.put("postlist",post);
 	System.out.println("data added");
 	
 	return mv;
 }
+// to search friend
 
-//
-//@GetMapping("/posts")
-//public String displayUser() {
-////    String redirect=;
-////	ModelAndView mv= new ModelAndView(redirect);
-//	//System.out.println(redirect);
-//     postservice.getallposts() ;
-//      
-//  }	
-
-
-@GetMapping("/posts")
-public ModelAndView getalldata(ModelMap model) throws UnsupportedEncodingException {
-  
-  ModelAndView mv= new ModelAndView(postservice.getallposts(model));
-  return mv;
-    
-}
-
-@GetMapping("/profile")
-public ModelAndView profile(ModelMap map) throws UnsupportedEncodingException
+@RequestMapping(value="/searchfriend", method=RequestMethod.POST)
+public ModelAndView searchfriend(ModelMap map,@RequestParam String name,HttpServletRequest request) throws UnsupportedEncodingException
 {
-	
-	  map.put("user", user);
-	 String name= user.getFirstname();
-	 List<post> post= postservice.userpost(name);
+	String friendname=request.getParameter("friendname");
+	 List<Post> post= postservice.userpost(name);
 	 map.put("postlist",post);
+	 User user= userservice.getdatabyname(name);
+	User frienddata=userservice.getdatabyname(friendname);
+	map.put("friend_data", frienddata);
+	    List<Friend> listdata=new ArrayList<>();
+		listdata= friendservice.getlist(user.getId());
+		List<User> friendlist=new ArrayList<>();
+		
+		for(Friend x:listdata)
+		{
+			 User user1= userservice.getbyid(x.getReciever());
+			 System.out.println(x.getReciever());
+			 friendlist.add(user1);
+		}
+		 map.put("user", user);
+		 map.put("friendlist", friendlist);
 	  ModelAndView mv= new ModelAndView("userprofile.jsp");
 	  return mv;
 }
-//@PostMapping("/addimages")
-//public ResponseEntity<String> uploadfile(@RequestParam("file") MultipartFile file)
-//{
-//    System.out.println();
-//	
-//	try {
-//		InputStream stream= file.getInputStream();
-//		FileOutputStream fos= new FileOutputStream(directory); 
-//		byte[] buffer= new byte[stream.available()];
-//	    stream.read(buffer);
-//	    fos.write(buffer);
-//	    fos.close();
-//	} catch (IOException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
-//	
-//	return ResponseEntity.ok("working fine");
-//}
+// friend request
+
+@RequestMapping(value="/addfriend", method=RequestMethod.GET)
+public ModelAndView profile(ModelMap map,@RequestParam String uname,@RequestParam int friendid) throws UnsupportedEncodingException
+{
+	 User user= userservice.getdatabyname(uname);
+	 friendservice.savefriend(user.getId(), friendid);
+	 List<Post> post= postservice.userpost(uname);
+	 map.put("postlist",post);
+	 List<Friend> listdata=new ArrayList<>();
+		listdata= friendservice.getlist(user.getId());
+		List<User> friendlist=new ArrayList<>();
+		
+		for(Friend x:listdata)
+		{
+			 User user1= userservice.getbyid(x.getReciever());
+			 friendlist.add(user1);
+		}
+		 map.put("user", user);
+		 map.put("friendlist", friendlist);
+	 ModelAndView mv= new ModelAndView("userprofile.jsp");
+	 return mv;
+}
+
+//post deleting by user
+@RequestMapping(value="/deletepost", method=RequestMethod.GET)
+public ModelAndView deletepost(ModelMap map,@RequestParam String uname,@RequestParam int id) throws UnsupportedEncodingException
+{
+	ModelAndView mv= new ModelAndView("userprofile.jsp");
+	 User user= userservice.getdatabyname(uname);
+	postservice.deletepost(id);
+	 List<Post> post= postservice.userpost(uname);
+	 map.put("postlist",post);
+	 List<Friend> listdata=new ArrayList<>();
+		listdata= friendservice.getlist(user.getId());
+		List<User> friendlist=new ArrayList<>();
+		
+		for(Friend x:listdata)
+		{
+			 User user1= userservice.getbyid(x.getReciever());
+			 friendlist.add(user1);
+		}
+		 map.put("user", user);
+		 map.put("friendlist", friendlist);
+
+	return mv;
+}
+
+@RequestMapping(value="/completeDetails", method=RequestMethod.GET)
+public ModelAndView viewfrienddata(ModelMap map,@RequestParam String name,@RequestParam String uname)
+{
+	ModelAndView mv= new ModelAndView("userprofile.jsp");
+	User user=userservice.getdatabyname(name);
+	map.put("friend_data", user);
+	map.put("name", uname);
+	return mv;
+	
+}
+
+
+
 }

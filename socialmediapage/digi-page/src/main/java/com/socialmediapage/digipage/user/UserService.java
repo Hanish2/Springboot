@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSessionEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,7 @@ private UserRepository repository;
     public boolean login(HttpServletRequest request,ModelMap modelmap)
     {
     	User user= new User();
+    
     	String email= request.getParameter("email");
     	String password=request.getParameter("password");
     	user= repository.findByemail(email);
@@ -56,5 +58,15 @@ private UserRepository repository;
     	return user;
     }
    
-    
+    public User getdatabyname(String name)
+    {
+    	User user= repository.findByfirstname(name);
+    	return user;
+    }
+    public User getbyid(int id)
+    {
+    	User user= repository.findById(id);
+    	return user;
+    }
 }
+

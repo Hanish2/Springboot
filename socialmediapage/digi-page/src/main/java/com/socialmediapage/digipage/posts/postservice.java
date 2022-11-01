@@ -29,15 +29,15 @@ import io.netty.handler.codec.base64.Base64Encoder;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 @Service
-public class postservice {
+public class PostService {
 @Autowired
  private PostRepository postrepository;
 
-public String getallposts(ModelMap model) throws UnsupportedEncodingException {
+public List<Post> getallposts() throws UnsupportedEncodingException {
     
-    List<post> postlist=new ArrayList<post>();
+    List<Post> postlist=new ArrayList<Post>();
    postrepository.findAll().forEach(i->postlist.add(i));
-   for(post x:postlist)
+   for(Post x:postlist)
 	{
 		byte[] imgdata=x.getImage_url();
 		if(imgdata!=null)
@@ -46,9 +46,9 @@ public String getallposts(ModelMap model) throws UnsupportedEncodingException {
 		    x.setBase64image(base64EncodedImageBytes);
 		}
 	}
-   model.addAttribute("result", postlist);
+ 
   
-   return "posts.jsp";
+   return postlist;
 }
 
 
@@ -58,7 +58,7 @@ public void savePost(HttpServletRequest request,MultipartFile file,String direct
 //	MultipartFile file=request.getPart("image_url");
 	
 	
-	post post_data= new post();
+	Post post_data= new Post();
 	post_data.setDescription(request.getParameter("description"));
 
 	//post_data.setImage_url(request.getParameter("image_url"));
@@ -90,22 +90,26 @@ public void savePost(HttpServletRequest request,MultipartFile file,String direct
 //	List<post> result= getallposts();
 //	return result;
 //}
-public List<post> userpost(String uname) throws UnsupportedEncodingException
+public List<Post> userpost(String uname) throws UnsupportedEncodingException
 {
-	List<post> userpostlist= new ArrayList<>();
+	List<Post> userpostlist= new ArrayList<>();
 	postrepository.findAllByuname(uname).forEach(x->userpostlist.add(x));
-	for(post x:userpostlist)
+	for(Post x:userpostlist)
 	{
 		byte[] imgdata=x.getImage_url();
 		if(imgdata!=null)
 		{
-			String base64EncodedImageBytes = Base64.getEncoder().encodeToString(imgdata);
-		
+		String base64EncodedImageBytes = Base64.getEncoder().encodeToString(imgdata);
 	    x.setBase64image(base64EncodedImageBytes);
 		}
 	    
 	}
 	
 	return userpostlist;
+}
+public void deletepost(int id)
+{
+	postrepository.deleteById(id);
+	System.out.println("post data deleted");
 }
 }

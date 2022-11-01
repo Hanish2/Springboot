@@ -7,8 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Hi! there</h1>
-<p>click here for login</p>
-<button><a href="login.jsp"> login</a></button>
+<a href="adminregister.jsp"> register</a>
+<form action="/adminlogin" method="post">
+<input type="text" name="email" >
+<input type="password" name="password">
+<input type="submit" value="login">
+</form>
 </body>
 </html>

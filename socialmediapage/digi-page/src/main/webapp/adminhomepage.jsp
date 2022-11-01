@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Hi! there</h1>
-<p>click here for login</p>
-<button><a href="login.jsp"> login</a></button>
+<a href="/userlist">user data</a>
+<a href="/postlist">post data</a>
 </body>
 </html>
