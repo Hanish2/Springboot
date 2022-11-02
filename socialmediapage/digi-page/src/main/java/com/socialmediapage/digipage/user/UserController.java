@@ -80,6 +80,7 @@ public ModelAndView login(HttpServletRequest request,ModelMap modelmap) throws U
 	}
 	else {
 		redirect="login.jsp";
+		modelmap.put("error", "please give valid information");
 	}
 	ModelAndView mv= new ModelAndView(redirect);
 	return mv;
@@ -90,9 +91,9 @@ public ModelAndView login(HttpServletRequest request,ModelMap modelmap) throws U
 public ModelAndView profile(ModelMap map,@RequestParam String name) throws UnsupportedEncodingException
 {
 	
-	 List<Post> post= postservice.userpost(name);
-	 map.put("postlist",post);
-	 User user= userservice.getdatabyname(name);
+	List<Post> post= postservice.userpost(name);
+	map.put("postlist",post);
+	User user= userservice.getdatabyname(name);
 	List<Friend> listdata=new ArrayList<>();
 	listdata= friendservice.getlist(user.getId());
 	List<User> friendlist=new ArrayList<>();
@@ -201,12 +202,32 @@ public ModelAndView deletepost(ModelMap map,@RequestParam String uname,@RequestP
 @RequestMapping(value="/completeDetails", method=RequestMethod.GET)
 public ModelAndView viewfrienddata(ModelMap map,@RequestParam String name,@RequestParam String uname)
 {
-	ModelAndView mv= new ModelAndView("userprofile.jsp");
+	ModelAndView mv= new ModelAndView("frienddata.jsp");
 	User user=userservice.getdatabyname(name);
 	map.put("friend_data", user);
 	map.put("name", uname);
 	return mv;
 	
+}
+
+@PostMapping("/updateuser")
+public ModelAndView updatedetails(HttpServletRequest request,ModelMap map) throws ParseException
+{
+	userservice.updateUser(request);
+	 User user= userservice.getdatabyname(request.getParameter("firstname"));
+	List<Friend> listdata=new ArrayList<>();
+	listdata= friendservice.getlist(user.getId());
+	List<User> friendlist=new ArrayList<>();
+	
+	for(Friend x:listdata)
+	{
+		 User user1= userservice.getbyid(x.getReciever());
+		 friendlist.add(user1);
+	}
+	 map.put("user", user);
+	 map.put("friendlist", friendlist);
+	  ModelAndView mv= new ModelAndView("userprofile.jsp");
+	return mv;
 }
 
 

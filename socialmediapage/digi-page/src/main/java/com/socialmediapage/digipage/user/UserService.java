@@ -68,5 +68,23 @@ private UserRepository repository;
     	User user= repository.findById(id);
     	return user;
     }
+    
+
+public void updateUser(HttpServletRequest request) throws ParseException
+{
+	User user=repository.findById(Integer.parseInt(request.getParameter("id")));
+	user.setFirstname(request.getParameter("firstname"));
+	user.setLastname(request.getParameter("lastname"));
+	user.setGender(request.getParameter("gender"));
+	String date=request.getParameter("dateofbirth");
+	Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);  
+	user.setDateofbirth(date1);
+	user.setMobile(request.getParameter("mobile"));
+	user.setEmail(request.getParameter("email"));
+	user.setPassword(request.getParameter("password"));
+	System.out.println(user.getGender());
+	repository.save(user);
+}
+
 }
 

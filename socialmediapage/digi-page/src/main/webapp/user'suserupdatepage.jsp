@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 <center>
 <fieldset style="width:300px;">
 <table>
-<form action="/adminupdateuser" method="post">
+<form action="/updateuser" method="post">
  <tr>
  <input type="hidden" id="id" name="id" value="${user.id}">
   <td>First name:</td>
@@ -45,5 +44,6 @@
 </table>
 </fieldset>
 </center>
+
 </body>
 </html>

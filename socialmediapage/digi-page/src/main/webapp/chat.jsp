@@ -8,28 +8,36 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+
+ div.message {
+                margin:5px;
+                padding:5px;
+              
+                width: 500px;
+                height: 110px;
+                overflow: auto;
+                text-align:justify;
+            }</style>
 </head>
 <body>
  <%
- response.setIntHeader("Refresh", 5);
+ response.setIntHeader("Refresh", 10);
  %>
- <div class="card" >
+ <div class="card">
       <h2>chat box</h5> 
- <div id="divActivites" name="divActivites" style="border:1px solid black;width:250px;">
-<textbox>
-<c:forEach items="${chat_data}" var="x">
-
-${x.name}:&nbsp &nbsp<p>${x.content}</p>
-</c:forEach>
-</textbox>
-
+ <div class="message" id="divActivites" name="divActivites" style="border:1px solid black;width:250px;">
+		<c:forEach items="${chat_data}" var="x">
+		${x.name}:&nbsp &nbsp<p>${x.content}</p>
+       </c:forEach>
 </div>
- <form action="/sendchat" method="post">
-<input type="hidden" name="uname"  value="${name}"/>
+ <form action="/sendchat">
+<input type="hidden" name="name"  value="${name}"/>
 <input type="text" name="content" placeholder="type text here"/><input type="submit" value="send"/>
-
 </form>
+<button><a href="/chatbox?name=${name}">refresh</a></button>
     </div>
+    
 
 </body>
 </html>

@@ -21,7 +21,7 @@ private ChatRepository repo;
 	}
 	public void sendmessage(HttpServletRequest request) {
 		Message message= new Message();
-		message.setName(request.getParameter("uname"));
+		message.setName(request.getParameter("name"));
 		message.setContent(request.getParameter("content"));
 		Date date = Calendar.getInstance().getTime(); 
 		message.setTimestamp(date);

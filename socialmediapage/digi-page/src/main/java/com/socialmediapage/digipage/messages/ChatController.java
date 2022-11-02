@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,31 +17,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 public class ChatController {
 @Autowired
 MessageService service;
 	
-	@RequestMapping(value="/chatbox", method=RequestMethod.GET)
+	@RequestMapping(value="/chatbox")
 	public ModelAndView getContent(ModelMap map,@RequestParam String name) 
 	{
 		ModelAndView mv= new ModelAndView("chat.jsp");
 		List<Message> list= service.getchat();
 		map.put("chat_data", list);
-		map.addAttribute("name", name);
+		map.put("name", name);
 		return mv;
 	}
 	
-	@PostMapping(value="/sendchat")
+	@RequestMapping(value="/sendchat")
 	public ModelAndView putchat(ModelMap map,HttpServletRequest request)
 	{
 		ModelAndView mv= new ModelAndView("chat.jsp");
 	    service.sendmessage(request);
-		
 		List<Message> list=service.getchat();
 		map.put("chat_data", list);
+		map.put("name", request.getParameter("name"));
 		return mv;
-	}
-
-	
+	}	
 }

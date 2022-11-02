@@ -31,7 +31,7 @@
 <td>
 </td>
 <td>
-<a href="/profile?uname=${name}"> add friend</a> 
+<a href="/profile?name=${name}"> back to profile</a> 
 </td>
 </tr>
 </table>

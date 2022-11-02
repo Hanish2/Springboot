@@ -13,6 +13,7 @@
 </head>
 <body>
 <a href="index.jsp" style="float: right;margin">log out</a>
+<a href="/user'suserupdatepage.jsp">update</a>
 <div style="float:right;">
 <table>
 <tr>
@@ -92,45 +93,26 @@
 </tr>
 </table>
 </div>
-<center>
-
-<table>
-<tbody>
+<div class="card" style=" width:300px; margin-left: 450px;">
 <c:forEach items="${postlist}" var="x">
-<tr>
-<td>
-<div style="display:none;">${x.post_id}</div>
-</td> 
+<center>
+<div class="card" style=" width:400px; ">
 
-</tr>
-<tr>
-<td> <br></td>
-</tr>
-<tr>
-<td>name                  :</td> <td>${x.uname}</td>
-</tr>
-<tr>
-<td>image                 :</td> <td>
-<img  src= "data:image/jpeg;base64,${x.base64image}" style="width: 130px;height:200px ;"/></img></td>
-</tr>
-<tr>
-<td>description           :</td> <td>${x.description}</td>
-</tr>
-<tr>
-
-<td>likes                 :</td> <td>${x.likes} </td>
-</tr>
-<tr>
-<td>time of posting       :</td> <td>${x.timestamp}</td>
-</tr>
- <tr>
-<td>______________________</td>
-<td><a href="deletepost?uname=${user.firstname}&&id=${x.post_id}"> delete post</a></td>
- </tr>
+   <div class="card" style="border:1px solid black;" >
+   
+      <h5>Post by: ${x.uname} &nbsp &nbsp post time:${x.timestamp} </h5>
+      <div class="fakeimg" style="height:350px;"><img src="data:image/jpeg;base64,${x.base64image}" style="width: 180px;height:300px 	;"/>
+       <p>${x.uname}: ${x.description}&nbsp&nbsp<a href="deletepost?uname=${user.firstname}&&id=${x.post_id}"> delete post</a></p>
+       
+       </div>
+     
+    </div>
+    </div>
+ </center>
 </c:forEach>
-</tbody>
-</table>
-</center>
+
+</div>
+ 
 
 </body>
 </html>

@@ -19,6 +19,7 @@
 
 
 <div class="card" style=" width:300px; margin-left: 450px;">
+<center>
 <c:forEach items="${result}" var="x">
 
 <div class="card" style=" width:400px; ">
@@ -31,7 +32,7 @@
      
     </div>
 </c:forEach>
-
+</center>
 </div>
 
 
