@@ -31,8 +31,9 @@
 <td>
 </td>
 <td>
-<a href="/profile?name=${name}"> back to profile</a> 
+<a href="profile?name=${name}"  style="float:right;">profile</a>
 </td>
+<h4>${name}: name</h4>
 </tr>
 </table>
 </div>

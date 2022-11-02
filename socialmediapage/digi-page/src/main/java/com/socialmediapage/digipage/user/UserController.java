@@ -57,9 +57,19 @@ public ModelAndView index()
 	return mv; 
 }
 @PostMapping("/register")
-public ModelAndView  value1(HttpServletRequest request) throws ParseException {
-	ModelAndView mv= new ModelAndView("login.jsp");
-   userservice.insert(request);
+public ModelAndView  value1(HttpServletRequest request,ModelMap map) throws ParseException {
+   String redirect="";
+   User user= userservice.getData(request.getParameter("email"));
+   if(user==null)
+   {
+	   userservice.insert(request);
+	   redirect="login.jsp";
+   }
+   else {
+	   map.put("error1","email is aleady used please use another email");
+   }
+   ModelAndView mv= new ModelAndView(redirect);
+   
    return mv;
 
 }
@@ -74,7 +84,7 @@ public ModelAndView login(HttpServletRequest request,ModelMap modelmap) throws U
 		redirect="homepage.jsp";
 		String email=request.getParameter("email");
 		user=userservice.getData(email);
-		modelmap.put("name",user.getFirstname());
+		modelmap.put("name",user.getEmail());
 		List<Post> postlist= postservice.getallposts();
 		modelmap.put("result", postlist);
 	}
@@ -90,10 +100,10 @@ public ModelAndView login(HttpServletRequest request,ModelMap modelmap) throws U
 @RequestMapping(value="/profile", method=RequestMethod.GET)
 public ModelAndView profile(ModelMap map,@RequestParam String name) throws UnsupportedEncodingException
 {
-	
-	List<Post> post= postservice.userpost(name);
+	User user=userservice.getData(name);
+	List<Post> post= postservice.userpost(user.getFirstname());
 	map.put("postlist",post);
-	User user= userservice.getdatabyname(name);
+	
 	List<Friend> listdata=new ArrayList<>();
 	listdata= friendservice.getlist(user.getId());
 	List<User> friendlist=new ArrayList<>();

@@ -45,7 +45,7 @@
 <td>firstname    :</td> <td>${x.firstname}</td>
 </tr>
 <tr>
-<td>&nbsp</td> <td><a href="/completeDetails?name=${x.firstname}&&uname=${user.firstname}">get data</a></td>
+<td>&nbsp</td> <td><a href="/completeDetails?name=${x.firstname}&&uname=${user.email}">get data</a></td>
 </tr>
 <tr>
 <td>
