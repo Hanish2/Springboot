@@ -7,9 +7,9 @@
 <title>Register</title>
 
 </head>
-<body>
+<body style="background-color: #D6F5F0;">
 <center>
-<fieldset style="width:300px;">
+<fieldset style="width:300px; margin-top: 400px;">
 <table>
 
 <form action="/register" method="post">

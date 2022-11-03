@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
+<body style="background-color: #D6F5F0;margin-top: 250px;">
 <center>
 <form action="/login" method="post">		
 UserName:<input type="text" name="email" required>

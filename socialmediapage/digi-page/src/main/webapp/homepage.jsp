@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>    
 
-<%@ page import="com.socialmediapage.digipage.posts.*"%>
+<%@ page import="com.socialmediapage.digipage.repository.*"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.socialmediapage.digipage.user.UserService" %>
+<%@ page import="com.socialmediapage.digipage.service.UserService" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
+<body style="background-color: #D6F5F0;">
 <td>${name}</td>
 <a href="profile?name=${name}"  style="float:right;">profile</a>
 <br>

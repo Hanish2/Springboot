@@ -13,14 +13,14 @@
  div.message {
                 margin:5px;
                 padding:5px;
-              
+                
                 width: 500px;
                 height: 110px;
                 overflow: auto;
                 text-align:justify;
             }</style>
 </head>
-<body>
+<body style="background-color: #D6F5F0;">
  <%
  response.setIntHeader("Refresh", 10);
  %>
