@@ -25,9 +25,9 @@
 <div class="card" style=" width:400px; ">
 
    <div class="card" style="border:1px solid black;" >
-      <h5>Post by: ${x.uname} &nbsp &nbsp post time:${x.timestamp} </h5>
+      <h5>Post by: ${x.userName} &nbsp &nbsp post time:${x.timeStamp} </h5>
       <div class="fakeimg" style="height:350px;"><img src="data:image/jpeg;base64,${x.base64image}" style="width: 180px;height:300px 	;"/>
-       <p>${x.uname}: ${x.description}</p>
+       <p>${x.userName}: ${x.description}</p>
        </div>
      
     </div>

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="/userlist">user data</a>
-<a href="/postlist">post data</a>
+<a href="/userList">user data</a>
+<a href="/postList">post data</a>
 </body>
 </html>

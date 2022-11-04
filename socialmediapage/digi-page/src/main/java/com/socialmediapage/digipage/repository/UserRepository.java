@@ -11,8 +11,6 @@ import com.socialmediapage.digipage.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 	User findByemail(String email);
-//   boolean findByemailAndpassword(String email,String password);
 	User findById(int id);
-	
-	User findByfirstname(String firstname);
+	User findByfirstName(String firstName);
 }

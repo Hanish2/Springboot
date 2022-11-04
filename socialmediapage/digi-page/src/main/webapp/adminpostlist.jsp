@@ -23,13 +23,13 @@
 <c:forEach items="${postList}" var="x">  
   <tr>
     <td>${x.post_id}</td>
-    <td>${x.uname}</td>  
+    <td>${x.userName}</td>  
     <td><img  src= "data:image/jpeg;base64,${x.base64image}" style="width: 50px;height:80px ;"/></img></td>
     <td>${x.description}</td>
     <td>${x.likes}</td>
-    <td>${x.timestamp}</td> 
+    <td>${x.timeStamp}</td> 
       <td>
-       <a href="/admindeletepost?id=${x.post_id}" >Delete</a>
+       <a href="/adminDeletePost?id=${x.post_id}" >Delete</a>
       </td>
 </c:forEach>
 </tbody>

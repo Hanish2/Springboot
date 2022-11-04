@@ -11,6 +11,6 @@ import com.socialmediapage.digipage.entity.Post;
 
 @Repository
 public interface PostRepository  extends CrudRepository<Post, Integer>{
-  List<Post> findAllByuname(String uname);
+  List<Post> findAllByuserName(String userName);
   
 }

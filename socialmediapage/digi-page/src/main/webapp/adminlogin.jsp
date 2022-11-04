@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="adminregister.jsp"> register</a>
-<form action="/adminlogin" method="post">
-<input type="text" name="email" >
-<input type="password" name="password">
+<form action="/adminLogin" method="post">
+email: <input type="text" name="email" ><br>
+
+password: <input type="password" name="password">
 <input type="submit" value="login">
 </form>
 </body>

@@ -20,7 +20,7 @@ public class Message {
  @Column
  private String content;
  @Column
- private Date timestamp;
+ private Date timeStamp;
  
  public int getId() {
 		return id;
@@ -41,10 +41,10 @@ public void setContent(String content) {
 	this.content = content;
 }
 public Date getTimestamp() {
-	return timestamp;
+	return timeStamp;
 }
-public void setTimestamp(Date timestamp) {
-	this.timestamp = timestamp;
+public void setTimestamp(Date timeStamp) {
+	this.timeStamp = timeStamp;
 }
 
  

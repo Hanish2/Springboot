@@ -9,6 +9,6 @@
 <body>
 <h1>Hi! there</h1>
 <p>click here for login</p>
-<button><a href="login.jsp"> login</a></button>
+<button><a href="Login.jsp"> login</a></button>
 </body>
 </html>

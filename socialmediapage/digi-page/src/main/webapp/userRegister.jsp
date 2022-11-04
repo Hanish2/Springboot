@@ -15,11 +15,11 @@
 <form action="/register" method="post">
  <tr>
   <td>First name:</td>
-  <td>  <input type="text" id="fname" name="firstname" required></td>
+  <td>  <input type="text" id="fname" name="firstName" required></td>
  </tr>
  <tr>
  <td> Last name:</td>
- <td> <input type="text" id="lname" name="lastname"></td>
+ <td> <input type="text" id="lname" name="lastName" required></td>
  </tr>
   <tr>
   <td>email:</td>
@@ -31,7 +31,7 @@
   </tr>
   <tr>
   <td>date of birth:</td>
-  <td><input type="date" id="date" name="dateofbirth"></td>
+  <td><input type="date" id="date" name="dateOfBirth" required></td>
   </tr>
   <tr>
   <td>Gender:</td>

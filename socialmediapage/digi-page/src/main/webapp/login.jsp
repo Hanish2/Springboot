@@ -14,9 +14,9 @@ UserName:<input type="text" name="email" required>
 Password:<input type="password"name="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
 <input type="submit" value="submit">
 </form>
-<a href="userRegister.jsp"> register</a>
+<a href="UserRegister.jsp"> register</a>
 </center>
-
+<a href="AdminLogin.jsp">admin login</a>
 </body>
 </html>
 

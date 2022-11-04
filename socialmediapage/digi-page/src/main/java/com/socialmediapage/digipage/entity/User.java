@@ -19,36 +19,36 @@ public class User {
     @GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
     @Column
-	String firstname;
+	String firstName;
     @Column
-	String lastname;
+	String lastName;
 	@Column 
     String email;
 	@Column
 	String mobile;
 	@Column
-	Date dateofbirth;
+	Date dateOfBirth;
 	@Column
 	String gender;
 	@Column
-	String password;
+	String password;	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public String getEmail() {
 		return email;
@@ -62,11 +62,11 @@ public class User {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	public Date getDateofbirth() {
-		return dateofbirth;
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
-	public void setDateofbirth(Date dateofbirth) {
-		this.dateofbirth = dateofbirth;
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 	public String getGender() {
 		return gender;
@@ -80,10 +80,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public User() {
-		super();
-		
-	}
+	
 	
 
 	

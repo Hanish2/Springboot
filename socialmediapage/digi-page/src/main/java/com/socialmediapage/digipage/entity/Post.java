@@ -21,7 +21,7 @@ public class Post {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
  private int post_id; 
 @Column
- private String  uname;
+ private String  userName;
 @Lob
  private byte[] image_url;
 @Column
@@ -29,72 +29,78 @@ public class Post {
 @Column
  private int likes;
 @Column
- private Date timestamp;
+ private Date timeStamp;
 
 private String base64image;
-public String getBase64image() {
-	return base64image;
-}
-public void setBase64image(String base64image) {
-	this.base64image = base64image;
-}
+
 public int getPost_id() {
 	return post_id;
 }
+
 public void setPost_id(int post_id) {
 	this.post_id = post_id;
 }
-public String getuname() {
-	return uname;
-}
-public void setuname(String uname) {
-	this.uname = uname;
-		}
 
-public String getUname() {
-	return uname;
+public String getUserName() {
+	return userName;
 }
-public void setUname(String uname) {
-	this.uname = uname;
+
+public void setUserName(String userName) {
+	this.userName = userName;
+}
+
+public byte[] getImage_url() {
+	return image_url;
+}
+
+public void setImage_url(byte[] image_url) {
+	this.image_url = image_url;
 }
 
 public String getDescription() {
 	return description;
 }
+
 public void setDescription(String description) {
 	this.description = description;
 }
+
 public int getLikes() {
 	return likes;
 }
+
 public void setLikes(int likes) {
 	this.likes = likes;
 }
-public Date getTimestamp() {
-	return timestamp;
-}
-public void setTimestamp(Date timestamp) {
-	this.timestamp = timestamp;
-}
-public Post() {
-	super();
-	// TODO Auto-generated constructor stub
-}
-public byte[] getImage_url() {
-	 
-	return image_url;
-}
-public void setImage_url(byte[] image_url) {
-	this.image_url = image_url;
+
+public Date getTimeStamp() {
+	return timeStamp;
 }
 
-public Post(int post_id, String uname, byte[] image_url, String description, int likes, Date timestamp) {
+public void setTimeStamp(Date timeStamp) {
+	this.timeStamp = timeStamp;
+}
+
+public String getBase64image() {
+	return base64image;
+}
+
+public void setBase64image(String base64image) {
+	this.base64image = base64image;
+}
+
+public Post() {
+	
+}
+
+public Post(int post_id, String userName, byte[] image_url, String description, int likes, Date timeStamp) {
 	super();
 	this.post_id = post_id;
-	this.uname = uname;
+	this.userName = userName;
 	this.image_url = image_url;
 	this.description = description;
 	this.likes = likes;
-	this.timestamp = timestamp;
+	this.timeStamp = timeStamp;
 }
+
 }

@@ -13,7 +13,7 @@
 <table>
 <c:forEach items="${result}" var="x">
 <tr>
-<td>name              :</td> <td>${x.uname}</td>
+<td>name              :</td> <td>${x.userName}</td>
 </tr>
 <tr>
 <td>image             :</td> <td><img  src= "data:image/jpeg;base64,${x.base64image}" style="width: 50px;height: 80px ;"/></img></td>
@@ -25,7 +25,7 @@
 <td>likes             :</td> <td>${x.likes}</td>
 </tr>
 <tr>
-<td>time of posting   :</td> <td>${x.timestamp}</td>
+<td>time of posting   :</td> <td>${x.timeStamp}</td>
 </tr> 
 </c:forEach>
 </tbody>

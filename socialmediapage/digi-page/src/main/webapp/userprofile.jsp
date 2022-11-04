@@ -12,15 +12,15 @@
 <title>Insert title here</title>
 </head>
 <body style="background-color: #D6F5F0;">
-<a href="index.jsp" style="float: right;margin">log out</a>
-<a href="/user'suserupdatepage.jsp">update</a>
+<a href="Index.jsp" style="float: right;margin">log out</a>
+<a href="/UserUpdate.jsp">update</a>
 <div style="float:right;">
 <table>
 <tr>
-<td>firstname    :</td> <td>${user.firstname}</td>
+<td>firstname    :</td> <td>${user.firstName}</td>
 </tr>
 <tr>
-<td>lastname     :</td> <td>${user.lastname}</td>
+<td>lastname     :</td> <td>${user.lastName}</td>
 </tr>
 <tr>
 <td>email        :</td> <td>${user.email}</td>
@@ -29,7 +29,7 @@
 <td>mobile       :</td> <td>${user.mobile}</td>
 </tr>
 <tr>
-<td>date-of-birth:</td> <td>${user.dateofbirth}</td>
+<td>date-of-birth:</td> <td>${user.dateOfBirth}</td>
 </tr>
 <tr>
 <td>gender       :</td> <td>${user.gender}</td>
@@ -40,12 +40,12 @@
 
 <table >
 <tbody>
-<c:forEach items="${friendlist}" var="x">
+<c:forEach items="${friendList}" var="x">
 <tr>
-<td>firstname    :</td> <td>${x.firstname}</td>
+<td>firstname    :</td> <td>${x.firstName}</td>
 </tr>
 <tr>
-<td>&nbsp</td> <td><a href="/completeDetails?name=${x.firstname}&&uname=${user.email}">get data</a></td>
+<td>&nbsp</td> <td><a href="/CompleteDetails?name=${x.firstName}&&uname=${user.email}">get data</a></td>
 </tr>
 <tr>
 <td>
@@ -59,18 +59,18 @@
 
 
 <div style="float: left;">
-<a href="addpost.jsp">add a post</a>
-<form action="/searchfriend?name=${user.firstname}" method="post">
+<a href="AddPost.jsp">add a post</a>
+<form action="/searchFriend?name=${user.firstName}" method="post">
 <input type="text" name="friendname" placeholder="enter the email of the friend">
 <input type="submit" value="search">
 </form>
 
 <table>
 <tr>
-<td>firstname    :</td> <td>${friend_data.firstname}</td>
+<td>firstname    :</td> <td>${friend_data.firstName}</td>
 </tr>
 <tr>
-<td>lastname     :</td> <td>${friend_data.lastname}</td>
+<td>lastname     :</td> <td>${friend_data.lastName}</td>
 </tr>
 <tr>
 <td>email        :</td> <td>${friend_data.email}</td>
@@ -79,7 +79,7 @@
 <td>mobile       :</td> <td>${friend_data.mobile}</td>
 </tr>
 <tr>
-<td>date-of-birth:</td> <td>${friend_data.dateofbirth}</td>
+<td>date-of-birth:</td> <td>${friend_data.dateOfBirth}</td>
 </tr>
 <tr>
 <td>gender       :</td> <td>${friend_data.gender}</td>
@@ -88,23 +88,22 @@
 <td>
 </td>
 <td>
-<a href="/addfriend?uname=${user.firstname}&&friendid=${friend_data.id}"> add friend</a> 
+<a href="/addFriend?uname=${user.firstName}&&friendId=${friend_data.id}"> add friend</a> 
 </td>
 </tr>
 </table>
 </div>
 <div class="card" style=" width:300px; margin-left: 450px;">
-<c:forEach items="${postlist}" var="x">
+<c:forEach items="${postList}" var="x">
 <center>
 <div class="card" style=" width:400px; ">
 
    <div class="card" style="border:1px solid black;" >
    
-      <h5>Post by: ${x.uname} &nbsp &nbsp post time:${x.timestamp} </h5>
+      <h5>Post by: ${x.userName} &nbsp &nbsp post time:${x.timeStamp} </h5>
       <div class="fakeimg" style="height:350px;"><img src="data:image/jpeg;base64,${x.base64image}" style="width: 180px;height:300px 	;"/>
-       <p>${x.uname}: ${x.description}&nbsp&nbsp<a href="deletepost?uname=${user.firstname}&&id=${x.post_id}"> delete post</a></p>
+       <p>${x.userName}: ${x.description}&nbsp&nbsp<a href="deletePost?name=${user.firstName}&&id=${x.post_id}"> delete post</a></p>
        
-       </div>
      
     </div>
     </div>

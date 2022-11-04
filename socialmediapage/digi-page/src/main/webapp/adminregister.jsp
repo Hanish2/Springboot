@@ -21,7 +21,7 @@
  </tr>
  <tr>
   <td>Mobile No:</td>
-  <td> <input type="number" id="mobile" name="phonenumber"pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></td>
+  <td> <input type="number" id="mobile" name="phoneNumber"pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></td>
   </tr>
   <tr>
   <td>password:</td>

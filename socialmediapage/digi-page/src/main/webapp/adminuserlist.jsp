@@ -24,18 +24,18 @@
 <c:forEach items="${userlist}" var="x">  
   <tr>
     <td>${x.id}</td>
-    <td>${x.firstname}</td>  
-    <td>${x.lastname}</td>
+    <td>${x.firstName}</td>  
+    <td>${x.lastName}</td>
     <td>${x.email}</td>
    
     <td>${x.mobile}</td>
     <td>${x.gender}</td>
-    <td>${x.dateofbirth}</td> 
+    <td>${x.dateOfBirth}</td> 
     <td>
-       <a class="btn btn-info" href="/adminedituser?id=${x.id}">Update</a>
+       <a class="btn btn-info" href="/AdminEditUser?id=${x.id}">Update</a>
       </td>
       <td>
-       <a class="btn btn-danger" href="/admindeleteuser?id=${x.id}" >Delete</a>
+       <a class="btn btn-danger" href="/AdminDeleteUser?id=${x.id}" >Delete</a>
       </td>
 </c:forEach>
 </tbody>

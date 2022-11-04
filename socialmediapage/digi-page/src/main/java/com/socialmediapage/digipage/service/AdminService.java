@@ -15,39 +15,40 @@ import org.springframework.stereotype.Service;
 import com.socialmediapage.digipage.entity.Admin;
 import com.socialmediapage.digipage.entity.Post;
 import com.socialmediapage.digipage.entity.User;
+import com.socialmediapage.digipage.interfaces.Adminservice;
 import com.socialmediapage.digipage.repository.AdminRepository;
 import com.socialmediapage.digipage.repository.PostRepository;
 import com.socialmediapage.digipage.repository.UserRepository;
 
 @Service
-public class AdminService {
+public class AdminService implements Adminservice {
 @Autowired
-AdminRepository adminrepo;
+AdminRepository adminRepository;
 
 @Autowired
-UserRepository userrepo;
+UserRepository userRepository;
 
 @Autowired
 PostRepository postRepository; 
 
 
 
-
+@Override
 public void save(HttpServletRequest request)
 {
 	Admin admin=new Admin();
 	admin.setName(request.getParameter("name"));
-	admin.setPhoneNumber(request.getParameter("phonenumber"));
+	admin.setPhoneNumber(request.getParameter("phoneNumber"));
 	admin.setEmail(request.getParameter("email"));
 	admin.setPassword(request.getParameter("password"));
-	adminrepo.save(admin);
-	System.out.println(admin.getEmail());
+	adminRepository.save(admin);
 	
 }
 
+@Override
 public boolean login(HttpServletRequest request)
 {
-	Admin admin=adminrepo.findByemail(request.getParameter("email"));
+	Admin admin=adminRepository.findByemail(request.getParameter("email"));
 	if(admin!=null)
 	{
 		if(admin.getPassword().equals(request.getParameter("password"))) {
@@ -57,63 +58,68 @@ public boolean login(HttpServletRequest request)
 	return false;
 }
 
-public void deleteuser(int id)
+@Override
+public void deleteUser(int id) 
 {
-	User user=userrepo.findById(id);
-	userrepo.deleteById(id);
-  List<Post> list=	postRepository.findAllByuname(user.getFirstname());
+	User user=userRepository.findById(id);
+	userRepository.deleteById(id);
+  List<Post> list=	postRepository.findAllByuserName(user.getFirstName());
 	for(Post x:list)
 	{
 		postRepository.deleteById(x.getPost_id());
 	}
-	System.out.println(" user data deleted");
-	System.out.println("posta made by user deleted");
 }
 
-public void deletepost(int id)	
+@Override
+public void deletePost(int id)	
 {
 	postRepository.deleteById(id);
 	System.out.println("post data deleted");
 }
 
-public List<User> getalluserlist()
-{
-	List<User> userList= new ArrayList();
-	userrepo.findAll().forEach(x->userList.add(x));
-	return userList;
-}
 
-public List<Post> getallposts()
+
+@Override
+public List<Post> getAllPosts()
 {
 	List<Post> postList= new ArrayList();
 	postRepository.findAll().forEach(x->postList.add(x));
 	for(Post x:postList) 
 	{
-		byte[] imgdata=x.getImage_url();
-		if(imgdata!=null)
+		byte[] imgData=x.getImage_url();
+		if(imgData!=null)
 		{
-			String base64EncodedImageBytes = Base64.getEncoder().encodeToString(imgdata);
+			String base64EncodedImageBytes = Base64.getEncoder().encodeToString(imgData);
 		    x.setBase64image(base64EncodedImageBytes);
 		}
 	}
 	
 	return postList;
+
 }
 
+@Override
 public void updateUser(HttpServletRequest request) throws ParseException
 {
-	User user=userrepo.findById(Integer.parseInt(request.getParameter("id")));
-	user.setFirstname(request.getParameter("firstname"));
-	user.setLastname(request.getParameter("lastname"));
+	User user=userRepository.findById(Integer.parseInt(request.getParameter("id")));
+	user.setFirstName(request.getParameter("firstName"));
+	user.setLastName(request.getParameter("lastName"));
 	user.setGender(request.getParameter("gender"));
-	String date=request.getParameter("dateofbirth");
-	Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);  
-	user.setDateofbirth(date1);
+	String date=request.getParameter("dateOfBirth");
+	Date formatted_date=new SimpleDateFormat("yyyy-MM-dd").parse(date);  
+	user.setDateOfBirth(formatted_date);
 	user.setMobile(request.getParameter("mobile"));
 	user.setEmail(request.getParameter("email"));
 	user.setPassword(request.getParameter("password"));
 	System.out.println(user.getGender());
-	userrepo.save(user);
+	userRepository.save(user);
+}
+
+@Override
+public List<User> getAllUserList() {
+	List<User> userList= new ArrayList();
+	userRepository.findAll().forEach(x->userList.add(x));
+	return userList;
 }
 
 

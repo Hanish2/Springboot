@@ -10,10 +10,10 @@
 
 <table>
 <tr>
-<td>firstname    :</td> <td>${friend_data.firstname}</td>
+<td>firstname    :</td> <td>${friend_data.firstName}</td>
 </tr>
 <tr>
-<td>lastname     :</td> <td>${friend_data.lastname}</td>
+<td>lastname     :</td> <td>${friend_data.lastName}</td>
 </tr>
 <tr>
 <td>email        :</td> <td>${friend_data.email}</td>
@@ -22,7 +22,7 @@
 <td>mobile       :</td> <td>${friend_data.mobile}</td>
 </tr>
 <tr>
-<td>date-of-birth:</td> <td>${friend_data.dateofbirth}</td>
+<td>date-of-birth:</td> <td>${friend_data.dateOfBirth}</td>
 </tr>
 <tr>
 <td>gender       :</td> <td>${friend_data.gender}</td>

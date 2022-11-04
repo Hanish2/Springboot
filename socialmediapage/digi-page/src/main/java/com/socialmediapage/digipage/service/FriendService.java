@@ -7,27 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.socialmediapage.digipage.entity.Friend;
+import com.socialmediapage.digipage.interfaces.Friendservice;
 import com.socialmediapage.digipage.repository.FriendRepository;
 
 @Service
-public class FriendService {
+public class FriendService implements Friendservice {
 	@Autowired
-	private FriendRepository friendrepo;
-public void savefriend(int id1,int id2)
+	private FriendRepository friendRepository;
+	
+@Override
+public void saveFriend(int senderId,int recieverId) throws NullPointerException
 {
 	Friend friend= new Friend();
-	friend.setSender(id1);
-	friend.setReciever(id2);
+	friend.setSender(senderId);
+	friend.setReciever(recieverId);
 	friend.setStatus("true");
-	friendrepo.save(friend);
-	System.out.println(friend.getId());
-	System.out.println("data saved");
+	friendRepository.save(friend);
 }
-public List<Friend> getlist(int id)
+
+@Override
+public List<Friend> getList(int id) throws NullPointerException
 {
 	List<Friend> list=new ArrayList();
-	friendrepo.findAllBysender(id).forEach(x->list.add(x));
-	System.out.println(list);
+	friendRepository.findAllBysender(id).forEach(x->list.add(x));
 	return list;
 	
 }

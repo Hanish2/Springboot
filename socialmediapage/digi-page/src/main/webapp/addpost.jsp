@@ -9,7 +9,7 @@
 <body style="background-color: #D6F5F0;">
 
 <table>
-<form action="/addpost" method="post" enctype="multipart/form-data">
+<form action="/addPost" method="post" enctype="multipart/form-data">
  <tr>
   <td>image:</td>
   <td> <input type="file" name="image_url" accept="image/png, image/jpeg"></td>
@@ -23,8 +23,8 @@
  <td> <input type="text" id="email" name="likes"></td>
  </tr>
  <tr>
-  <td>user_id:</td>
-  <td> <input type="text" id="mobile" name="user_id"></td>
+  <td>user_name:</td>
+  <td> <input type="text" id="mobile" name="userName"></td>
   </tr>
   <tr>
   <td></td>

@@ -16,30 +16,32 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.socialmediapage.digipage.entity.User;
+import com.socialmediapage.digipage.interfaces.Userservice;
 import com.socialmediapage.digipage.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserService  implements Userservice{
 @Autowired
 private UserRepository repository;
+
+@Override
     public void insert(HttpServletRequest request) throws ParseException
     {
     	User user= new User();
-    	user.setFirstname(request.getParameter("firstname"));
-    	user.setLastname(request.getParameter("lastname"));
+    	user.setFirstName(request.getParameter("firstName"));
+    	user.setLastName(request.getParameter("lastName"));
     	user.setGender(request.getParameter("gender"));
-    	String date=request.getParameter("dateofbirth");
+    	String date=request.getParameter("dateOfBirth");
     	Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);  
-    	user.setDateofbirth(date1);
+    	user.setDateOfBirth(date1);
     	user.setMobile(request.getParameter("mobile"));
     	user.setEmail(request.getParameter("email"));
     	user.setPassword(request.getParameter("password"));
-    	System.out.println(user.getGender());
     	this.repository.save(user);
     }
    
- 
-    public boolean login(HttpServletRequest request,ModelMap modelmap)
+@Override
+    public boolean login(HttpServletRequest request,ModelMap modelmap) throws NullPointerException
     {
     	User user= new User();
     
@@ -55,38 +57,38 @@ private UserRepository repository;
     		return false;
     }
     
-    public  User getData(String email)
+@Override
+    public  User getDataByEmail(String email) throws NullPointerException
     {
        User user=repository.findByemail(email);
-    	return user;
+    	   return user;
     }
-   
-    public User getdatabyname(String name)
-    {
-    	User user= repository.findByfirstname(name);
-    	return user;
-    }
-    public User getbyid(int id)
-    {
-    	User user= repository.findById(id);
-    	return user;
-    }
-    
 
+@Override
 public void updateUser(HttpServletRequest request) throws ParseException
 {
 	User user=repository.findById(Integer.parseInt(request.getParameter("id")));
-	user.setFirstname(request.getParameter("firstname"));
-	user.setLastname(request.getParameter("lastname"));
+	user.setFirstName(request.getParameter("firstName"));
+	user.setLastName(request.getParameter("lastName"));
 	user.setGender(request.getParameter("gender"));
-	String date=request.getParameter("dateofbirth");
+	String date=request.getParameter("dateOfBirth");
 	Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);  
-	user.setDateofbirth(date1);
+	user.setDateOfBirth(date1);
 	user.setMobile(request.getParameter("mobile"));
 	user.setEmail(request.getParameter("email"));
 	user.setPassword(request.getParameter("password"));
-	System.out.println(user.getGender());
 	repository.save(user);
+}
+
+@Override
+public User getDataByName(String name) throws NullPointerException {
+ 	return repository.findByfirstName(name);
+}
+
+@Override
+public User getDataById(int id)  throws NullPointerException {
+	
+    return repository.findById(id);
 }
 
 }
