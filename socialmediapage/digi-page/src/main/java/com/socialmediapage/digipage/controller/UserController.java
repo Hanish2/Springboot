@@ -1,6 +1,7 @@
 package com.socialmediapage.digipage.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,22 +19,25 @@ import org.springframework.web.servlet.ModelAndView;
 import com.socialmediapage.digipage.entity.Friend;
 import com.socialmediapage.digipage.entity.Post;
 import com.socialmediapage.digipage.entity.User;
-import com.socialmediapage.digipage.service.FriendService;
-import com.socialmediapage.digipage.service.PostService;
-import com.socialmediapage.digipage.service.UserService;
+import com.socialmediapage.digipage.interfaces.Friendservice;
+import com.socialmediapage.digipage.interfaces.Postservice;
+import com.socialmediapage.digipage.interfaces.Userservice;
+import com.socialmediapage.digipage.serviceimplementation.FriendService;
+import com.socialmediapage.digipage.serviceimplementation.PostService;
+import com.socialmediapage.digipage.serviceimplementation.UserService;
 
 @RestController
 @Component
 public class UserController {
  
 @Autowired
-private UserService userService;
+private Userservice userService;
 
 @Autowired 
-private PostService postService;
+private Postservice postService;
 
 @Autowired
-private FriendService friendService;
+private Friendservice friendService;
 
 
 
@@ -152,7 +156,7 @@ public ModelAndView searchfriend(ModelMap map,@RequestParam String name,HttpServ
 // friend request
 
 @RequestMapping(value="/addFriend", method=RequestMethod.GET)
-public ModelAndView profile(ModelMap map,@RequestParam String userName,@RequestParam int friendId) throws UnsupportedEncodingException
+public ModelAndView profile(ModelMap map,@RequestParam String userName,@RequestParam int friendId) throws UnsupportedEncodingException, SQLException
 {
 	 User user= userService.getDataByEmail(userName);
 	 friendService.saveFriend(user.getId(), friendId);

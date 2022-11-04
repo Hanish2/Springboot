@@ -17,16 +17,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.socialmediapage.digipage.entity.Post;
 import com.socialmediapage.digipage.entity.User;
-import com.socialmediapage.digipage.service.AdminService;
-import com.socialmediapage.digipage.service.UserService;
+import com.socialmediapage.digipage.interfaces.Adminservice;
+import com.socialmediapage.digipage.interfaces.Userservice;
+import com.socialmediapage.digipage.serviceimplementation.AdminService;
+import com.socialmediapage.digipage.serviceimplementation.UserService;
 
 @RestController
 public class AdminController {
 @Autowired
-AdminService adminService;
+Adminservice adminService;
 
 @Autowired
-UserService userService;
+Userservice userService;
 
 @RequestMapping("/adminLogin")
 public ModelAndView login(HttpServletRequest request)

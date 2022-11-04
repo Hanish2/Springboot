@@ -18,12 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.socialmediapage.digipage.entity.Message;
-import com.socialmediapage.digipage.service.MessageService;
+import com.socialmediapage.digipage.interfaces.Messageservice;
+import com.socialmediapage.digipage.serviceimplementation.MessageService;
 
 @Controller
 public class ChatController {
 @Autowired
-MessageService service;
+Messageservice service;
 	
 	@RequestMapping(value="/chatbox")
 	public ModelAndView getContent(ModelMap map,@RequestParam String name) 
