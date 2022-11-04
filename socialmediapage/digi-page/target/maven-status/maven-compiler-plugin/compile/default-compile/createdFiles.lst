@@ -1,0 +1,10 @@
+com\socialmediapage\digipage\user\UserController.class
+com\socialmediapage\digipage\user\UserRepository.class
+com\socialmediapage\digipage\user\UserService.class
+com\socialmediapage\digipage\user\User.class
+com\socialmediapage\digipage\user\friends.class
+com\socialmediapage\digipage\user\friendrepository.class
+com\socialmediapage\digipage\DigiPageApplication.class
+com\socialmediapage\digipage\posts\post.class
+com\socialmediapage\digipage\posts\PostRepository.class
+com\socialmediapage\digipage\posts\postservice.class
