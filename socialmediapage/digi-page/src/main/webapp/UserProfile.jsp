@@ -3,7 +3,7 @@
     
 <%@ page import="com.socialmediapage.digipage.repository.*"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.socialmediapage.digipage.serviceimplementation.UserService" %>
+<%@ page import="com.socialmediapage.digipage.serviceImpl.UserService" %>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>

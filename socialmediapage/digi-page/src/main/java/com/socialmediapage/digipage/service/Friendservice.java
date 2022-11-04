@@ -1,4 +1,4 @@
-package com.socialmediapage.digipage.interfaces;
+package com.socialmediapage.digipage.service;
 
 import java.sql.SQLException;
 import java.util.List;

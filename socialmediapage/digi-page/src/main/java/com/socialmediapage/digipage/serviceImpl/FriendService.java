@@ -1,4 +1,4 @@
-package com.socialmediapage.digipage.serviceimplementation;
+package com.socialmediapage.digipage.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.socialmediapage.digipage.bean.Friend;
-import com.socialmediapage.digipage.interfaces.Friendservice;
 import com.socialmediapage.digipage.repository.FriendRepository;
+import com.socialmediapage.digipage.service.Friendservice;
 
 @Service
 public class FriendService implements Friendservice {

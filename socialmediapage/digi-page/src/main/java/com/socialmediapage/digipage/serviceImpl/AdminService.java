@@ -1,4 +1,4 @@
-package com.socialmediapage.digipage.serviceimplementation;
+package com.socialmediapage.digipage.serviceImpl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,19 +6,16 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.socialmediapage.digipage.bean.Admin;
 import com.socialmediapage.digipage.bean.Post;
 import com.socialmediapage.digipage.bean.User;
-import com.socialmediapage.digipage.interfaces.Adminservice;
 import com.socialmediapage.digipage.repository.AdminRepository;
 import com.socialmediapage.digipage.repository.PostRepository;
 import com.socialmediapage.digipage.repository.UserRepository;
+import com.socialmediapage.digipage.service.Adminservice;
 
 @Service
 public class AdminService implements Adminservice {

@@ -17,10 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.socialmediapage.digipage.bean.Post;
 import com.socialmediapage.digipage.bean.User;
-import com.socialmediapage.digipage.interfaces.Adminservice;
-import com.socialmediapage.digipage.interfaces.Userservice;
-import com.socialmediapage.digipage.serviceimplementation.AdminService;
-import com.socialmediapage.digipage.serviceimplementation.UserService;
+import com.socialmediapage.digipage.service.Adminservice;
+import com.socialmediapage.digipage.service.Userservice;
+import com.socialmediapage.digipage.serviceImpl.AdminService;
+import com.socialmediapage.digipage.serviceImpl.UserService;
 
 @RestController
 public class AdminController {

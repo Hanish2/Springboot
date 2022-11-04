@@ -1,4 +1,4 @@
-package com.socialmediapage.digipage.interfaces;
+package com.socialmediapage.digipage.service;
 
 import java.util.List;
 

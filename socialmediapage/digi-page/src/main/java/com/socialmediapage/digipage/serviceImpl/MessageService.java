@@ -1,4 +1,4 @@
-package com.socialmediapage.digipage.serviceimplementation;
+package com.socialmediapage.digipage.serviceImpl;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.socialmediapage.digipage.bean.Message;
-import com.socialmediapage.digipage.interfaces.Messageservice;
 import com.socialmediapage.digipage.repository.ChatRepository;
+import com.socialmediapage.digipage.service.Messageservice;
 
 @Service
 public class MessageService  implements Messageservice{

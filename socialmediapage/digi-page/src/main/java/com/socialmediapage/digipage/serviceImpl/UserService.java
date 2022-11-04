@@ -1,4 +1,4 @@
-package com.socialmediapage.digipage.serviceimplementation;
+package com.socialmediapage.digipage.serviceImpl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,8 +16,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.socialmediapage.digipage.bean.User;
-import com.socialmediapage.digipage.interfaces.Userservice;
 import com.socialmediapage.digipage.repository.UserRepository;
+import com.socialmediapage.digipage.service.Userservice;
 
 @Service
 public class UserService  implements Userservice{

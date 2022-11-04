@@ -20,12 +20,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.socialmediapage.digipage.bean.Friend;
 import com.socialmediapage.digipage.bean.Post;
 import com.socialmediapage.digipage.bean.User;
-import com.socialmediapage.digipage.interfaces.Friendservice;
-import com.socialmediapage.digipage.interfaces.Postservice;
-import com.socialmediapage.digipage.interfaces.Userservice;
-import com.socialmediapage.digipage.serviceimplementation.FriendService;
-import com.socialmediapage.digipage.serviceimplementation.PostService;
-import com.socialmediapage.digipage.serviceimplementation.UserService;
+import com.socialmediapage.digipage.service.Friendservice;
+import com.socialmediapage.digipage.service.Postservice;
+import com.socialmediapage.digipage.service.Userservice;
+import com.socialmediapage.digipage.serviceImpl.FriendService;
+import com.socialmediapage.digipage.serviceImpl.PostService;
+import com.socialmediapage.digipage.serviceImpl.UserService;
 
 @RestController
 @Component

@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.socialmediapage.digipage.bean.Message;
-import com.socialmediapage.digipage.interfaces.Messageservice;
-import com.socialmediapage.digipage.serviceimplementation.MessageService;
+import com.socialmediapage.digipage.service.Messageservice;
+import com.socialmediapage.digipage.serviceImpl.MessageService;
 
 @Controller
 public class ChatController {

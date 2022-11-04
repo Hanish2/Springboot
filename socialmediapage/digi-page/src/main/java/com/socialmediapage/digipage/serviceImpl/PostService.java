@@ -1,4 +1,4 @@
-package com.socialmediapage.digipage.serviceimplementation;
+package com.socialmediapage.digipage.serviceImpl;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,9 +23,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
 import com.socialmediapage.digipage.bean.Post;
-import com.socialmediapage.digipage.interfaces.Postservice;
 import com.socialmediapage.digipage.repository.PostRepository;
 import com.socialmediapage.digipage.repository.UserRepository;
+import com.socialmediapage.digipage.service.Postservice;
 
 import io.netty.handler.codec.base64.Base64Encoder;
 

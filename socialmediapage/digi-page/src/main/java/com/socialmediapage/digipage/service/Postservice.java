@@ -1,4 +1,4 @@
-package com.socialmediapage.digipage.interfaces;
+package com.socialmediapage.digipage.service;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
